@@ -1,58 +1,98 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 📱 Finance Control - Native Mobile App
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A powerful, privacy-focused finance management application built for mobile devices. Track your income, expenses, and manage your budget with a seamless native experience, all powered by the robust Laravel ecosystem.
 
-## About Laravel
+![Laravel](https://img.shields.io/badge/Laravel-13.0-FF2D20?style=for-the-badge&logo=laravel)
+![Livewire](https://img.shields.io/badge/Livewire-4.0-4e56a6?style=for-the-badge&logo=livewire)
+![SQLite](https://img.shields.io/badge/SQLite-Local-003B57?style=for-the-badge&logo=sqlite)
+![NativePHP](https://img.shields.io/badge/NativePHP-Mobile-4F46E5?style=for-the-badge)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## ✨ Features
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- **📊 Comprehensive Dashboard**: Get a quick overview of your financial health at a glance.
+- **💸 Transaction Management**: Effortlessly add and categorize your income and expenses.
+- **📅 Monthly Summaries**: Analyze your spending patterns with detailed monthly reports.
+- **🌐 Multilingual Support**: Fully localized in **English** and **Uzbek**.
+- **🔒 Privacy First**: Your data stays on your device. We use **SQLite** for secure, local-only storage—no cloud required.
+- **🚀 Native Performance**: Built using **NativePHP (Mobile)** to provide a smooth, responsive mobile experience.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 🛠️ Tech Stack
 
-## Learning Laravel
+- **Framework**: [Laravel 13](https://laravel.com)
+- **Frontend**: [Livewire 4](https://livewire.laravel.com) (TALL Stack approach)
+- **Mobile Wrapper**: [NativePHP Mobile](https://nativephp.com)
+- **Database**: SQLite (Local)
+- **Styling**: Tailwind CSS (integrated via Vite)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## 🚀 Getting Started
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Prerequisites
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+- **PHP**: 8.3 or higher
+- **Composer**: Latest version
+- **Node.js & NPM**: For frontend assets
+- **NativePHP Mobile**: Environment setup for iOS/Android (see [NativePHP docs](https://nativephp.com))
 
-## Agentic Development
+### Installation
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/your-username/php-native-finance.git
+   cd php-native-finance
+   ```
+
+2. **Run the setup script**:
+   The project includes a convenient setup command that installs dependencies, generates keys, and prepares the database:
+   ```bash
+   composer run setup
+   ```
+
+3. **Install NativePHP Mobile (if not already done)**:
+   ```bash
+   php artisan native:install
+   ```
+
+### Development
+
+To run the app in development mode with hot-reloading:
 
 ```bash
-composer require laravel/boost --dev
+# Start the development environment (Vite + Laravel)
+npm run dev
 
-php artisan boost:install
+# Run the app on your mobile emulator/device
+php artisan native:run
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+Use `php artisan native:watch` to sync changes to the running app in real-time.
 
-## Contributing
+### 📦 Production Build (Android)
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+To build and package the application for Android:
 
-## Code of Conduct
+1. **Build the assets**:
+   ```bash
+   npm run build
+   ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+2. **Package the app for Android**:
+   ```bash
+   php artisan native:package android
+   ```
+   This command will compile the app and generate a signed/unsigned APK/AAB for distribution.
 
-## Security Vulnerabilities
+3. **Build the app specifically**:
+   ```bash
+   php artisan native:build android
+   ```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## 📁 Project Structure
 
-## License
+- `app/Livewire`: Contains the core application logic (Dashboard, Transactions, etc.).
+- `database/migrations`: Defines the SQLite schema for local storage.
+- `lang/`: Localization files for English and Uzbek.
+- `native/`: NativePHP mobile configuration and assets.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## 📄 License
+
+This project is open-sourced software licensed under the [MIT license](LICENSE).
