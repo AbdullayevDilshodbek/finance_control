@@ -36,6 +36,10 @@ return [
     'transaction_plural' => 'transactions',
     'no_transactions_this_month' => 'No transactions this month',
 
+    // Balance Visibility
+    'show_balance' => 'Show balance',
+    'hide_balance' => 'Hide balance',
+
     // Language
     'language' => 'Language',
     'english' => 'EN',

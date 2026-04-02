@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\Setting;
 use App\Models\Transaction;
 use Carbon\Carbon;
 use Livewire\Component;
@@ -10,9 +11,12 @@ class MonthlySummary extends Component
 {
     public string $selectedMonth = '';
 
+    public bool $balanceHidden = false;
+
     public function mount(): void
     {
         $this->selectedMonth = now()->format('Y-m');
+        $this->balanceHidden = Setting::get('balance_hidden', '0') === '1';
     }
 
     public function previousMonth(): void

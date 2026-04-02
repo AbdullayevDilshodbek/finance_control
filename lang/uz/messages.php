@@ -36,6 +36,10 @@ return [
     'transaction_plural' => 'tranzaksiya',
     'no_transactions_this_month' => 'Bu oyda tranzaksiyalar yo\'q',
 
+    // Balance Visibility
+    'show_balance' => 'Balansni ko\'rsatish',
+    'hide_balance' => 'Balansni yashirish',
+
     // Language
     'language' => 'Til',
     'english' => 'EN',

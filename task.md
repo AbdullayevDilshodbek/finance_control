@@ -139,10 +139,37 @@
 
 ---
 
+## Epic 7: Balance Visibility Toggle (P1 — High)
+
+- [x] **7.1** Create `Setting` model + migration
+  - Table: `settings`
+  - Columns: `id`, `key` (string, unique), `value` (string), `created_at`, `updated_at`
+  - Add helper methods: `Setting::get($key, $default)` and `Setting::set($key, $value)`
+  - Status: `completed`
+
+- [x] **7.2** Add eye toggle button to Dashboard
+  - Eye/eye-off SVG icon button in the dashboard header area
+  - Toggles `balance_hidden` setting via `Setting::set()`
+  - When hidden: all amounts (summary cards, transaction list, chart) show `••••••` instead of numbers
+  - Setting persists in SQLite — survives app close/reopen
+  - Status: `completed`
+
+- [x] **7.3** Add eye toggle to Monthly Summary
+  - Read `balance_hidden` setting and apply same masking logic
+  - Monthly totals and daily breakdown amounts are hidden when enabled
+  - No separate toggle needed — shares the same persisted setting from Dashboard
+  - Status: `completed`
+
+- [x] **7.4** Add translation strings for balance visibility
+  - Add `show_balance` / `hide_balance` translation keys to `en/messages.php` and `uz/messages.php`
+  - Status: `completed`
+
+---
+
 ## Implementation Order
 
 ```
-1.1 → 1.2 → 3.2 → 3.3 → 3.1 → 3.4 → 2.1 → 2.5 → 2.2 → 2.3 → 2.4 → 2.6 → 4.1 → 4.2 → 4.3 → 5.1 → 5.2 → 5.3 → 6.1 → 6.2 → 6.3 → 6.4 → 6.5
+1.1 → 1.2 → 3.2 → 3.3 → 3.1 → 3.4 → 2.1 → 2.5 → 2.2 → 2.3 → 2.4 → 2.6 → 4.1 → 4.2 → 4.3 → 5.1 → 5.2 → 5.3 → 6.1 → 6.2 → 6.3 → 6.4 → 6.5 → 7.1 → 7.4 → 7.2 → 7.3
 ```
 
 ## Status Legend

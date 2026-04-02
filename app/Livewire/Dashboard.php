@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\Setting;
 use App\Models\Transaction;
 use Carbon\Carbon;
 use Livewire\Component;
@@ -10,9 +11,18 @@ class Dashboard extends Component
 {
     public string $selectedDate = '';
 
+    public bool $balanceHidden = false;
+
     public function mount(): void
     {
         $this->selectedDate = now()->toDateString();
+        $this->balanceHidden = Setting::get('balance_hidden', '0') === '1';
+    }
+
+    public function toggleBalanceVisibility(): void
+    {
+        $this->balanceHidden = ! $this->balanceHidden;
+        Setting::set('balance_hidden', $this->balanceHidden ? '1' : '0');
     }
 
     public function previousDay(): void

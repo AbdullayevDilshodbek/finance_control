@@ -26,22 +26,22 @@
 
     {{-- Monthly Totals --}}
     <div class="grid grid-cols-3 gap-3 mb-8">
-        <div class="bg-gray-800 rounded-xl p-4">
+        <div class="bg-gray-800 rounded-xl p-3 overflow-hidden">
             <p class="text-xs text-gray-400 mb-1">{{ __('messages.income') }}</p>
-            <p class="text-lg font-bold text-green-400">{{ number_format($totalIncome, 2) }}</p>
+            <p class="text-sm font-bold text-green-400 truncate">{{ $balanceHidden ? '••••••' : number_format($totalIncome, 2) }}</p>
         </div>
-        <div class="bg-gray-800 rounded-xl p-4">
+        <div class="bg-gray-800 rounded-xl p-3 overflow-hidden">
             <p class="text-xs text-gray-400 mb-1">{{ __('messages.expense') }}</p>
-            <p class="text-lg font-bold text-red-400">{{ number_format($totalExpense, 2) }}</p>
+            <p class="text-sm font-bold text-red-400 truncate">{{ $balanceHidden ? '••••••' : number_format($totalExpense, 2) }}</p>
         </div>
-        <div class="bg-gray-800 rounded-xl p-4">
+        <div class="bg-gray-800 rounded-xl p-3 overflow-hidden">
             <p class="text-xs text-gray-400 mb-1">{{ __('messages.balance') }}</p>
-            <p class="text-lg font-bold {{ $balance >= 0 ? 'text-white' : 'text-red-400' }}">{{ number_format($balance, 2) }}</p>
+            <p class="text-sm font-bold {{ $balance >= 0 ? 'text-white' : 'text-red-400' }} truncate">{{ $balanceHidden ? '••••••' : number_format($balance, 2) }}</p>
         </div>
     </div>
 
     {{-- Chart --}}
-    @if($totalIncome > 0 || $totalExpense > 0)
+    @if(($totalIncome > 0 || $totalExpense > 0) && !$balanceHidden)
         <div class="bg-gray-800 rounded-xl p-4 mb-8">
             <canvas id="monthlyChart" height="180"></canvas>
         </div>
@@ -59,10 +59,10 @@
                         <p class="text-gray-500 text-xs">{{ $day['count'] }} {{ $day['count'] === 1 ? __('messages.transaction_singular') : __('messages.transaction_plural') }}</p>
                     </div>
                     <div class="flex items-center justify-between">
-                        <p class="text-green-400 text-sm">+{{ number_format($day['income'], 2) }}</p>
-                        <p class="text-red-400 text-sm">-{{ number_format($day['expense'], 2) }}</p>
+                        <p class="text-green-400 text-sm">{{ $balanceHidden ? '••••••' : '+'.number_format($day['income'], 2) }}</p>
+                        <p class="text-red-400 text-sm">{{ $balanceHidden ? '••••••' : '-'.number_format($day['expense'], 2) }}</p>
                         @php $dayBalance = $day['income'] - $day['expense']; @endphp
-                        <p class="text-sm font-bold {{ $dayBalance >= 0 ? 'text-white' : 'text-red-400' }}">{{ number_format($dayBalance, 2) }}</p>
+                        <p class="text-sm font-bold {{ $dayBalance >= 0 ? 'text-white' : 'text-red-400' }}">{{ $balanceHidden ? '••••••' : number_format($dayBalance, 2) }}</p>
                     </div>
                 </div>
             @endforeach
@@ -77,7 +77,7 @@
     @endif
 </div>
 
-@if($totalIncome > 0 || $totalExpense > 0)
+@if(($totalIncome > 0 || $totalExpense > 0) && !$balanceHidden)
     @script
     <script>
         const ctx = document.getElementById('monthlyChart');
