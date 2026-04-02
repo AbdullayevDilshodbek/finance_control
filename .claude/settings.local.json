@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(composer create-project:*)",
+      "Bash(cp -r /tmp/php_native_temp/* /Users/dilshodbekabdullayev/Desktop/Programming/mobile/php_native/)",
+      "Bash(cp /tmp/php_native_temp/.* /Users/dilshodbekabdullayev/Desktop/Programming/mobile/php_native/)",
+      "Bash(composer require:*)",
+      "Bash(php artisan:*)",
+      "Bash(./vendor/bin/pint:*)",
+      "Bash(grep:*)"
+    ]
+  }
+}
